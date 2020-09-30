@@ -37,7 +37,8 @@
 <body>
 
 <div class="contain">
-
+        <button id="oui"></button>
+        <button id="non"></button>
     <p id="resource"></p>
 
         <div class="quizplace">
@@ -57,15 +58,14 @@
 
 
 
-
-
-
-
-
     <script>    
     let resource = document.getElementById('resource');
     let quiz = document.querySelectorAll('.quiz');
     let verifi = document.getElementById('verifi');
+    let oui = document.getElementById('oui');
+    let non = document.getElementById('non');
+    let yes = 0;
+    let no = 0;
     demarre()
    function demarre() {
     fetch('https://opentdb.com/api.php?amount=1')
@@ -74,19 +74,26 @@
         //renitialise les contenu
         for(i = 0; i < 4; i++){
             quiz[i].textContent='';
+            quiz[i].style.backgroundColor = 'white';
+            quiz[i].style.display = 'block'
         }
-        console.log(reponse.results[0].incorrect_answers.length);
+        // console.log(reponse.results[0].incorrect_answers.length);
+       
 
 
         //affiche la question
         resource.textContent = reponse.results[0].question;
         n = reponse.results[0].incorrect_answers.length===3 ? 4 : 2;
+        console.log('nombre de bloc ' + n);
+        
         //affecte une position aleatoire à la bonne reponse
         bonne = Math.floor(Math.random()*n);
         quiz[bonne].textContent = reponse.results[0].correct_answer;
-        console.log(bonne);
-        console.log(reponse.results[0].correct_answer);
-        console.log(reponse.results[0].incorrect_answers);
+        // console.log(bonne);
+        console.log('la bonne reponse: ' + reponse.results[0].correct_answer);
+        // console.log(reponse.results[0].incorrect_answers);
+       
+        
 
         
         
@@ -99,8 +106,26 @@
             }
         }   
 
+if(n == 2){
+            quiz[3].style.display = 'none';
+            quiz[2].style.display = 'none';
+        }
 
-        quiz.forEach(addEventListener('click', console.log('ok')))      
+quiz.forEach(qcm => qcm.addEventListener('click', (e) => {
+                if(e.target.textContent == reponse.results[0].correct_answer){
+                        console.log('yes ' + yes++);
+                        demarre()
+                } 
+                else if(e.target.textContent != reponse.results[0].correct_answer) { 
+                        console.log('no ' + no++);
+                        demarre() 
+                      }
+                })
+            )
+
+
+oui.textContent = yes;
+non.textContent = no;
     })  
 }    
     </script>
