@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Quizz</title>
+    <style>
+        .contain{
+            max-width:95%;
+            margin: 0px auto;
+
+        }
+    #resource{
+        width: 95%;
+        text-align: center;    }
+    .quizplace{
+        display: grid;
+        grid-template-columns: 1Fr 1fr;
+        grid-template-rows: 1Fr 1fr;
+        row-gap: 8px;
+        column-gap: 8px;
+        justify-items: center;
+    }
+    .quiz{
+        width: 140px;
+        height: 50px;
+        border: 1px solid black;
+        border-radius: 8px;
+        text-align: center;    }
+    button{
+        margin: auto;
+        display:block ;
+    }
+    </style>
+</head>
+<body>
+
+<div class="contain">
+
+    <p id="resource"></p>
+
+        <div class="quizplace">
+
+            <div class="quiz"></div>
+            <div class="quiz"></div>
+            <div class="quiz"></div>
+            <div class="quiz"></div>
+
+        </div>
+    
+<button id="verifi" onclick="demarre()">Verifiez</button>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+    <script>    
+    let resource = document.getElementById('resource');
+    let quiz = document.querySelectorAll('.quiz');
+    let verifi = document.getElementById('verifi');
+    demarre()
+   function demarre() {
+    fetch('https://opentdb.com/api.php?amount=1')
+    .then(reponse => reponse.json())
+    .then(reponse => {
+        //renitialise les contenu
+        for(i = 0; i < 4; i++){
+            quiz[i].textContent='';
+        }
+        console.log(reponse.results[0].incorrect_answers.length);
+
+
+        //affiche la question
+        resource.textContent = reponse.results[0].question;
+        n = reponse.results[0].incorrect_answers.length===3 ? 4 : 2;
+        //affecte une position aleatoire à la bonne reponse
+        bonne = Math.floor(Math.random()*n);
+        quiz[bonne].textContent = reponse.results[0].correct_answer;
+        console.log(bonne);
+        console.log(reponse.results[0].correct_answer);
+        console.log(reponse.results[0].incorrect_answers);
+
+        
+        
+        let j = 0;
+        for(let i = 0; i < n; i++){
+
+            if(i != bonne){
+                    quiz[i].textContent=reponse.results[0].incorrect_answers[j];
+                    j++;
+            }
+        }   
+
+
+        quiz.forEach(addEventListener('click', console.log('ok')))      
+    })  
+}    
+    </script>
+</body>
+</html>

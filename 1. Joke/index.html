@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+    button, #icon{
+        display: block;
+        margin: 10px auto;
+    }
+
+    #icon img{
+        display: flex;
+        margin: auto;
+        justify-content: center;
+        width: 70px;
+    }
+
+    </style>
+</head>
+<body>
+ 
+    <p style="text-align: center;" id="joke">Let's display API's ressources!</p>
+    <div id="icon"></div>
+    <button id="newjoke">!</button>
+    <button onclick="blague()">Blague !</button>
+
+
+
+
+    <script>
+    let joke = document.getElementById('joke');
+    let icon = document.getElementById('icon');
+
+
+    blague ();
+    function blague (){
+
+    fetch('https://api.chucknorris.io/jokes/random')
+
+    .then(res => res.json())
+
+    .then(res => {
+        console.log(res);
+        
+                    console.log(JSON.stringify(res.icon_url));
+                console.log(JSON.stringify(res.value));       
+            icon.innerHTML= `<img src="${res.icon_url}">`;
+        newjoke.textContent = JSON.stringify(res.value);
+        })
+
+    .catch(error => console.log("error"))
+    }
+    </script>
+
+</body>
+</html>
