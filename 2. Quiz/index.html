@@ -28,17 +28,25 @@
         border: 1px solid black;
         border-radius: 8px;
         text-align: center;    }
-    button{
+    
+    #oui, #non{
         margin: auto;
         display:block ;
+        width: 20px;
+        height: 20px;
     }
+
+    #verifi, #clear{
+        margin: auto;
+        display:block;
+        }
     </style>
 </head>
 <body>
 
 <div class="contain">
-        <button id="oui"></button>
-        <button id="non"></button>
+        <button id="oui">0</button>
+        <button id="non">0</button>
     <p id="resource"></p>
 
         <div class="quizplace">
@@ -51,6 +59,7 @@
         </div>
     
 <button id="verifi" onclick="demarre()">Verifiez</button>
+<button id="clear">Clear results</button>
 
 </div>
 
@@ -64,7 +73,7 @@
     let verifi = document.getElementById('verifi');
     let oui = document.getElementById('oui');
     let non = document.getElementById('non');
-    let yes = 0;
+    let yes = 0 ;
     let no = 0;
     demarre()
    function demarre() {
@@ -76,6 +85,7 @@
             quiz[i].textContent='';
             quiz[i].style.backgroundColor = 'white';
             quiz[i].style.display = 'block'
+            
         }
         // console.log(reponse.results[0].incorrect_answers.length);
        
@@ -111,21 +121,20 @@ if(n == 2){
             quiz[2].style.display = 'none';
         }
 
+        //ecoute de cliq sur tous les boutons quiz
 quiz.forEach(qcm => qcm.addEventListener('click', (e) => {
+                console.log(e.target.textContent);
+                
                 if(e.target.textContent == reponse.results[0].correct_answer){
-                        console.log('yes ' + yes++);
-                        demarre()
+                        oui.textContent = yes + 1;
+                        
                 } 
-                else if(e.target.textContent != reponse.results[0].correct_answer) { 
-                        console.log('no ' + no++);
-                        demarre() 
+                else { 
+                        console.log('no ' + no + 1 );
+                      
                       }
                 })
             )
-
-
-oui.textContent = yes;
-non.textContent = no;
     })  
 }    
     </script>
