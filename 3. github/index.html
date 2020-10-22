@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Github_Finder</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+
+
+
+
+ <form action="" id="searchForm">
+        <input type="text" id="searchInput">
+    </form>
+    <img src="" alt="" srcset="" id="image">
+    <script type="text/javascript">
+    let searchForm = document.getElementById('searchForm');
+    let searchInput = document.getElementById('searchInput');
+    let image = document.getElementById('image');
+    
+    
+        searchForm.addEventListener('submit', gitSearch);
+
+        async function gitSearch(event) {
+
+            event.preventDefault();
+            user = searchInput.value;
+
+
+            const cred = {
+                method: 'get',
+                url: `https://api.github.com/users/${user}`,
+                token: '91f713e06130937c162bdc2470c9e2489853f9d9',
+                username: user
+            };
+
+            const credent = {
+                method: 'get',
+                url: `https://api.github.com/users/${user}/repos`,
+                token: '91f713e06130937c162bdc2470c9e2489853f9d9',
+                username: user
+            }
+
+            let res = await axios(cred);
+            let response = await axios(credent);
+
+
+            console.log(res.data);
+            console.log(response.data);
+
+            console.log(response.data[0].name);
+            for (i = 0; i < response.data.length; i++){
+                console.log(response.data[i].name);
+
+                    }
+            console.log(res.config.username)
+            console.log(res.data.avatar_url);
+            console.log(res.data.public_repos);
+            image.src = res.avatar_url;
+            searchInput.textContent = "";
+        }
+    
+
+    </script>
+</body>
+</html>
