@@ -5,17 +5,95 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Github_Finder</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+
+    <style>
+    html{
+        background: #F0F2F5;
+    }
+    h4{text-align: center;}
+    .gith{
+        width: 150px;
+        display: block;
+        margin: 10px auto;
+    }
+    .prefix{
+        background: cadetblue;
+        border;
+    }
+    #searchInput{
+        background: cornsilk;
+    }
+    .collection{
+        margin-top: 1.5rem;
+    }
+    .collection-item{
+        vertical-align:baseline;
+        line-height: 2;
+    }
+    .card{
+        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075)
+    }
+    .btn{
+        background: none;
+        color: black;
+        border-radius: 25px;
+    }
+    </style>
 </head>
 <body>
 
+<div class="row">
+    <div class="container">
+        <div class="col s12">
+        <img src="gith.png" alt="" class="gith">
+            <h4>Github Finder</h4>
+            <div class="row ">
+                <div class="col s12 m6 push-m3">
+                    <form class="input-field" id="searchForm">
+                        <i class="material-icons prefix">search</i>
+                        <input type="search" id="searchInput" placeholder="Recherchez...">
+                    </form>
+                </div>
+           </div>
+        </div>
+    </div>
+</div>
+
+            <div class="row">
+                  <div class="container">
+                    <div class="col s12 m6"> 
+                        <div class="card">
+                            <div class="card-image waves-effect waves-block waves-light">
+                                <img src="" alt="" srcset="" id="image">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title activator grey-text text-darken-4">Name : ${}<i class="btn material-icons right">Github repos<i class="material-icons right">backup</i></i></span>
+                                
+                                <div class="collection">
+                                   <div class="collection-item">  Lien Github : 
+                                        <a href="${}" class="new badge right" data-badge-caption=""><i class="material-icons">insert_link</i></a>
+                                   </div>
+                                   <div class="collection-item">  Repos publique : 
+                                        <a href="#" class="new badge right" data-badge-caption="">${}</a>
+                                   </div>
+                                </div>
+
+                            </div>
+                            <div class="card-reveal">
+                                <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+                                <p>Here is some more information about this product that is only revealed once clicked on.</p>
+                            </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
 
 
-
- <form action="" id="searchForm">
-        <input type="text" id="searchInput">
-    </form>
-    <img src="" alt="" srcset="" id="image">
     <script type="text/javascript">
     let searchForm = document.getElementById('searchForm');
     let searchInput = document.getElementById('searchInput');
@@ -65,5 +143,7 @@
     
 
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
 </body>
 </html>
