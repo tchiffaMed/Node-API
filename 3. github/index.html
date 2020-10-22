@@ -12,16 +12,23 @@
 
     <style>
     html{
-        background: #F0F2F5;
+        background-color: #7a7a7a;
+        background-image: url("cons.svg");
+        font-family: 'averta'
+        
     }
-    h4{text-align: center;}
+    h4{
+        text-align: center;
+        font-family: 'quileny';
+    }
     .gith{
         width: 150px;
         display: block;
         margin: 10px auto;
+        
     }
     .prefix{
-        background: rgb(0, 0, 0);
+        background: linear-gradient(to right, #000000, #686767);
         border-top-left-radius: 25px;
         border-bottom-left-radius: 25px;
         padding-top: 6Px;
@@ -30,7 +37,7 @@
         margin-top: -5px;
         color: white;
     }
-    #searchInput:active{
+    .prefix:focus{
         color: white;
     }
     #searchInput{
@@ -38,21 +45,51 @@
         border-top-right-radius: 25px;
         border-bottom-right-radius: 25px;
         padding-left: 8px;
+        box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175)
     }
     .collection{
         margin-top: 1.5rem;
+        border: white 1px solid;
     }
     .collection-item{
         vertical-align:baseline;
         line-height: 2;
     }
     .card{
-        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+        box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+        border-radius: 10px;
+    }
+    .card-image{
+        height: 220px;
     }
     .btn{
         background: none;
         color: black;
         border-radius: 25px;
+    }
+    .btn:hover{
+        background: linear-gradient(to right, #000000, #686767);
+        color: white;
+    }
+    .badge{
+        font-size: 1.5em;
+    }
+    @font-face {
+        font-family: 'averta';
+        src: url('averta.ttf');
+    }
+    @font-face {
+        font-family: 'quileny';
+        src: url('quileny.ttf');
+    }
+    @media screen and (max-width: 600px) {
+        .btn{
+            font-size: 10px;
+            width: 148px;
+        }
+        .titre{
+            font-size: 15px;
+        }
     }
     </style>
 </head>
@@ -64,7 +101,7 @@
         <img src="gith.png" alt="" class="gith">
             <h4>Github Finder</h4>
             <div class="row ">
-                <div class="col s12 m6 push-m3">
+                <div class="col s12 m6 l6 push-m3 push-l3">
                     <form class="input-field" id="searchForm">
                         <i class="material-icons center prefix">search</i>
                         <input type="search" id="searchInput" placeholder="Recherchez...">
@@ -75,70 +112,44 @@
     </div>
 </div>
 
-            <div class="row">
+        <div class="row">
 
-                  <div class="container">
-                    <div class="col s12 m6"> 
+                <div class="container duk">
+                    <div class="col s12 m12 l6"> 
                         <div class="card">
                             <div class="card-image waves-effect waves-block waves-light">
                                 <img src="" alt="" srcset="" id="image">
                             </div>
                             <div class="card-content">
-                                <span class="card-title activator grey-text text-darken-4">Name : ${}<i class="btn material-icons right">Github repos<i class="material-icons right">backup</i></i></span>
+                                <span class="card-title  grey-text text-darken-4"> <span class="titre">Name : ${}</span> <i class="btn material-icons right activator">Github repos<i class="material-icons right">backup</i></i></span>
                                 
                                 <div class="collection">
                                    <div class="collection-item">  Lien Github : 
-                                        <a href="${}" class="new badge right" data-badge-caption=""><i class="material-icons">insert_link</i></a>
+                                        <a href="${}" class="new badge right" data-badge-caption=""><i class="material-icons black-text">insert_link</i></a>
                                    </div>
                                    <div class="collection-item">  Repos publique : 
-                                        <a href="#" class="new badge right" data-badge-caption="">${}</a>
+                                        <a href="#"> <span class="new badge right black white-text" data-badge-caption="">${}</span></a>
                                    </div>
                                 </div>
 
                             </div>
                             <div class="card-reveal">
-                                <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+                                <span class="card-title grey-text text-darken-4">Liste des repository publique:<i class="material-icons right">close</i></span>
                                 <p>Here is some more information about this product that is only revealed once clicked on.</p>
                             </div>
                             </div>
-                        </div>
                     </div>
-
-
-                    <div class="container">
-                            <div class="col s12 m6"> 
-                                <div class="card">
-                                    <div class="card-image waves-effect waves-block waves-light">
-                                        <img src="" alt="" srcset="" id="image">
-                                    </div>
-                                    <div class="card-content">
-                                        <span class="card-title activator grey-text text-darken-4">Name : ${}<i class="btn material-icons right">Github repos<i class="material-icons right">backup</i></i></span>
-                                        
-                                        <div class="collection">
-                                           <div class="collection-item">  Lien Github : 
-                                                <a href="${}" class="new badge right" data-badge-caption=""><i class="material-icons">insert_link</i></a>
-                                           </div>
-                                           <div class="collection-item">  Repos publique : 
-                                                <a href="#" class="new badge right" data-badge-caption="">${}</a>
-                                           </div>
-                                        </div>
-        
-                                    </div>
-                                    <div class="card-reveal">
-                                        <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                                        <p>Here is some more information about this product that is only revealed once clicked on.</p>
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
                 </div>
+
+        </div>
 
 
     <script type="text/javascript">
     let searchForm = document.getElementById('searchForm');
     let searchInput = document.getElementById('searchInput');
     let image = document.getElementById('image');
+    let duk = document.querySelector('.duk');
+    let liste = document.getElementById('liste');
     
     
         searchForm.addEventListener('submit', gitSearch);
@@ -172,7 +183,7 @@
 
             console.log(response.data[0].name);
             for (i = 0; i < response.data.length; i++){
-                console.log(response.data[i].name);
+                  response.data[i].name
 
                     }
             console.log(res.config.username)
@@ -180,6 +191,39 @@
             console.log(res.data.public_repos);
             image.src = res.avatar_url;
             searchInput.textContent = "";
+                    console.log(duk)
+            duk.innerHTML = `
+            <div class="col s12 m12 l6"> 
+                        <div class="card">
+                            <div class="card-image waves-effect waves-block waves-light">
+                                <img src="${res.data.avatar_url}" alt="" srcset="" id="image">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title  grey-text text-darken-4"> <span class="titre">Name : ${res.config.username}</span> <i class="btn material-icons right activator">Github repos<i class="material-icons right">backup</i></i></span>
+                                
+                                <div class="collection">
+                                   <div class="collection-item">  Lien Github : 
+                                        <a href="${res.data.html_url}" class="new badge right" data-badge-caption=""><i class="material-icons black-text">insert_link</i></a>
+                                   </div>
+                                   <div class="collection-item">  Repos publique : 
+                                        <a href="#"> <span class="new badge right black white-text" data-badge-caption="">${res.data.public_repos}</span></a>
+                                   </div>
+                                </div>
+
+                            </div>
+                            <div class="card-reveal">
+                                <span class="card-title grey-text text-darken-4">Liste des repository publique:<i class="material-icons right">close</i></span>
+                                <p id="liste"></p>
+                            </div>
+                            </div>
+                    </div>`
+
+            for (i = 0; i < response.data.length; i++){
+                liste.insertAdjacentElement =   response.data[i].name;
+
+                    }
+
+
         }
     
 
