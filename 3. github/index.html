@@ -115,30 +115,7 @@
         <div class="row">
 
                 <div class="container duk">
-                    <div class="col s12 m12 l6"> 
-                        <div class="card">
-                            <div class="card-image waves-effect waves-block waves-light">
-                                <img src="" alt="" srcset="" id="image">
-                            </div>
-                            <div class="card-content">
-                                <span class="card-title  grey-text text-darken-4"> <span class="titre">Name : ${}</span> <i class="btn material-icons right activator">Github repos<i class="material-icons right">backup</i></i></span>
-                                
-                                <div class="collection">
-                                   <div class="collection-item">  Lien Github : 
-                                        <a href="${}" class="new badge right" data-badge-caption=""><i class="material-icons black-text">insert_link</i></a>
-                                   </div>
-                                   <div class="collection-item">  Repos publique : 
-                                        <a href="#"> <span class="new badge right black white-text" data-badge-caption="">${}</span></a>
-                                   </div>
-                                </div>
-
-                            </div>
-                            <div class="card-reveal">
-                                <span class="card-title grey-text text-darken-4">Liste des repository publique:<i class="material-icons right">close</i></span>
-                                <p>Here is some more information about this product that is only revealed once clicked on.</p>
-                            </div>
-                            </div>
-                    </div>
+                    
                 </div>
 
         </div>
@@ -149,7 +126,6 @@
     let searchInput = document.getElementById('searchInput');
     let image = document.getElementById('image');
     let duk = document.querySelector('.duk');
-    let liste = document.getElementById('liste');
     
     
         searchForm.addEventListener('submit', gitSearch);
@@ -177,22 +153,17 @@
             let res = await axios(cred);
             let response = await axios(credent);
 
-
-            console.log(res.data);
-            console.log(response.data);
-
-            console.log(response.data[0].name);
-            for (i = 0; i < response.data.length; i++){
+            
+            for (let i = 0; i < response.data.length; i++){
                   response.data[i].name
-
                     }
-            console.log(res.config.username)
-            console.log(res.data.avatar_url);
-            console.log(res.data.public_repos);
-            image.src = res.avatar_url;
+            
             searchInput.textContent = "";
-                    console.log(duk)
-            duk.innerHTML = `
+            let div = document.createElement('div');
+            duk.appendChild(div);
+            
+                  
+            div.innerHTML = `
             <div class="col s12 m12 l6"> 
                         <div class="card">
                             <div class="card-image waves-effect waves-block waves-light">
@@ -213,22 +184,23 @@
                             </div>
                             <div class="card-reveal">
                                 <span class="card-title grey-text text-darken-4">Liste des repository publique:<i class="material-icons right">close</i></span>
-                                <p id="liste"></p>
+                                <p></p>
                             </div>
                             </div>
                     </div>`
 
-            for (i = 0; i < response.data.length; i++){
-                liste.insertAdjacentElement =   response.data[i].name;
-
-                    }
 
 
-        }
-    
+                    for (let i = 0; i < response.data.length; i++){
+                    div.children[0].firstElementChild.lastElementChild.lastElementChild.insertAdjacentHTML('beforeend', `${response.data[i].name} </br>`) 
+
+                 
+                }
+            }
 
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
 
 </body>
 </html>
