@@ -4,14 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
     <title>Quizz</title>
     <style>
+        html{
+            height: 100%;
+        }
+
+        body{
+            background-image: url(sutr.svg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 100%;
+        }
+
+        .title{
+            text-align: center;
+        }
         .contain{
             max-width:95%;
             margin: 0px auto;
-
         }
-    #resource{
+    /* #resource{
         width: 95%;
         text-align: center;    }
     .quizplace{
@@ -21,55 +36,115 @@
         row-gap: 8px;
         column-gap: 8px;
         justify-items: center;
-    }
+    }*/
     .quiz{
-        width: 140px;
-        height: 50px;
-        border: 1px solid black;
-        line-height: 50px;
+        height: 7rem;
         border-radius: 8px;
         text-align: center;  
-        align-items: center;
-        
+        vertical-align: baseline;
+        text-decoration: none;
+        color: black;
          }
-    
-    #oui, #non{
-        margin: auto;
-        display:block ;
-        width: 20px;
-        height: 20px;
+    .card{
+        border-radius: 8px ;
+        box-shadow: 0 0.5rem 0.2rem rgba(0, 0, 0, 0.062);
+        border: solid 1px black;
+        text-align: center;
     }
-
-    #verifi, #clear{
-        margin: auto;
-        display:block;
+    #oui{
+        margin-top: 20px;
+        background: linear-gradient(to right, #11998e, #38ef7d);
+    }
+    #non{
+        margin-top: 20px;
+        background: linear-gradient(to right, #ed213a, #93291e);
+    }
+    #resource{
+        height: 6rem;
+        background: #ffffff;
+        padding: 6px;
+        border-radius: 8px ;
+        border-top:solid 5px #031100ce;
+        border-bottom:solid 5px #051f00ce;
+        text-align: center;
+        margin: 40px;
+    }
+    #verifi {
+        background: linear-gradient(to right, #000000, #0f9b0f);
+        }
+    #clear{
+        background: linear-gradient(to right, #ec008c, #fc6767);
         }
     </style>
 </head>
 <body>
-
-<div class="contain">
-        <button id="oui">0</button>
-        <button id="non">0</button>
-    <p id="resource"></p>
-
-        <div class="quizplace">
-
-            <div class="quiz"></div>
-            <div class="quiz"></div>
-            <div class="quiz"></div>
-            <div class="quiz"></div>
-
+<div class="row">
+    <div class="container">
+        <div class="col s12">
+            <p class="title">Quiz App</p>
         </div>
-    
-<button id="verifi" onclick="demarre()">Verifiez</button>
-<button id="clear">Clear results</button>
+            <div class="col s3 l3 push-s9 push-l9 right-align">
+                <button class="btn" id="oui">0</button>
+                <button class="btn" id="non">0</button>
+            </div>
+            <div class="col s12">
+                <p id="resource"></p>
+            </div>
 
-</div>
+            <div class="row">
+                <div class="container container container">
+                        <div class="col s6 m6 l6"> 
+                                    <a href="#">
+                                        <div class="card">
+                                            <div class="card-content quiz"> 
+                                                
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
 
+                                <div class="col s6 m6 l6"> 
+                                        <a href="#">
+                                            <div class="card">
+                                                <div class="card-content quiz"> 
+                                                    
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
 
+                                    <div class="col s6 m6 l6"> 
+                                            <a href="#">
+                                                <div class="card">
+                                                    <div class="card-content quiz"> 
+                                                        
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
 
+                                        <div class="col s6 m6 l6"> 
+                                                <a href="#">
+                                                    <div class="card">
+                                                        <div class="card-content quiz"> 
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <div class="row">
+        <div class="container">
+            <div class="col s8 l8 push-s4 push-l4 right-align">
+                <a class="btn" id="verifi" onclick="reload()">Verifiez</a>
+                <a class="btn" id="clear" onclick="reset()">Clear results</a>
+            </div>
+        </div>
+    </div>
 
     <script>    
     let resource = document.getElementById('resource');
@@ -77,10 +152,19 @@
     let verifi = document.getElementById('verifi');
     let oui = document.getElementById('oui');
     let non = document.getElementById('non');
-    let yes = 0 ;
+    let yes = 0;
     let no = 0;
-    demarre()
+    localStorage.setItem('ouioui', yes);
+    localStorage.setItem('nonnon', no);
+    
+    demarre();
+    
+    //localStorage function
+   
+
+
    function demarre() {
+       
     fetch('https://opentdb.com/api.php?amount=1')
     .then(reponse => reponse.json())
     .then(reponse => {
@@ -91,56 +175,106 @@
             quiz[i].style.display = 'block'
             
         }
-        // console.log(reponse.results[0].incorrect_answers.length);
+        
+        console.log(reponse.results[0].incorrect_answers.length);
        
 
 
         //affiche la question
         resource.textContent = reponse.results[0].question;
-        n = reponse.results[0].incorrect_answers.length===3 ? 4 : 2;
-        console.log('nombre de bloc ' + n);
+        //affiche le nombrre de case 4 ou 2
+        n = reponse.results[0].incorrect_answers.length === 3 ? 4 : 2;
+        
         
         //affecte une position aleatoire à la bonne reponse
         bonne = Math.floor(Math.random()*n);
         quiz[bonne].textContent = reponse.results[0].correct_answer;
         // console.log(bonne);
         console.log('la bonne reponse: ' + reponse.results[0].correct_answer);
+        console.log(localStorage)
         // console.log(reponse.results[0].incorrect_answers);
-       
-        
 
-        
-        
+        //inserer les mauvaise reponses en evitant la position de la bonne reponse
         let j = 0;
         for(let i = 0; i < n; i++){
 
             if(i != bonne){
-                    quiz[i].textContent=reponse.results[0].incorrect_answers[j];
+                    quiz[i].textContent = reponse.results[0].incorrect_answers[j];
                     j++;
             }
         }   
-
-if(n == 2){
-            quiz[3].style.display = 'none';
-            quiz[2].style.display = 'none';
+        //cacher les deux dernière cases si le nombre de questiion est egale à deux(2)
+            if(n == 2){
+                    quiz[3].style.display = 'none';
+                    quiz[2].style.display = 'none';
         }
 
         //ecoute de cliq sur tous les boutons quiz
-quiz.forEach(qcm => qcm.addEventListener('click', (e) => {
-                console.log(e.target.textContent);
-                
-                if(e.target.textContent == reponse.results[0].correct_answer){
-                        oui.textContent = yes + 1;
+// for(k of quiz){
+//     k.addEventListener('click', (e) => {
+//         console.log(e.target.textContent);
+//                 e.stopPropagation();
+
+//                 if(e.target.textContent == reponse.results[0].correct_answer){
+//                         console.log(localStorage)
+//                         yes = parseInt(storeY) + 1;
+//                         oui.textContent = yes;
+//                         // console.log('Yes a atteint ' + yes );
                         
-                } 
-                else { 
-                        console.log('no ' + no + 1 );
+//                 } 
+//                 else if(e.target.textContent != reponse.results[0].correct_answer){ 
+//                     console.log(localStorage)
+//                     no = parseInt(storeN)  + 1;
+//                         non.textContent = no;
+//                         // console.log('No a atteint ' + no );
+//                       } 
+
+//                       definir();
                       
+//     })}
+  
+    quiz.forEach(qcm => qcm.addEventListener('click', e => {
+     e.target.backgroundColor= 'green'; 
+        console.log(e);
+        
+        if(e.target.textContent == reponse.results[0].correct_answer){
+                        console.log(localStorage)
+                        yes = localStorage.ouioui +  1;
+                           
+                        
+                        // console.log('Yes a atteint ' + yes );   
+                } 
+                else if(e.target.textContent != reponse.results[0].correct_answer){ 
+                    console.log(localStorage)
+                    no = localStorage.nonnon + 1;
+                   
+                        // console.log('No a atteint ' + no );
                       }
-                })
-            )
+
+                    })
+                )
+//End of forEach
     })  
+
 }    
+
+
+
+
+function reset() {
+    localStorage.clear();
+    demarre();
+    oui.textContent = 0;
+    non.textContent = 0;
+}
+function reload() {
+    demarre();
+    oui.textContent = localStorage.ouioui
+    non.textContent = localStorage.nonnon
+   }
+
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
 </body>
 </html>
