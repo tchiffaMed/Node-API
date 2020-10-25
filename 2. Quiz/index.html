@@ -22,6 +22,12 @@
         .title{
             text-align: center;
         }
+        .hidden{
+            display: none;
+        }
+        .quest{
+            text-align: center;
+        }
         .contain{
             max-width:95%;
             margin: 0px auto;
@@ -87,16 +93,21 @@
                 <button class="btn" id="oui">0</button>
                 <button class="btn" id="non">0</button>
             </div>
+           
             <div class="col s12">
                 <p id="resource"></p>
+            </div>
+
+            <div class="col s12 ">
+                <img src="spin.svg" class="quest hidden" alt="" srcset="">
             </div>
 
             <div class="row">
                 <div class="container container container">
                         <div class="col s6 m6 l6"> 
-                                    <a href="#">
+                                    <a href="#" class="quiz">
                                         <div class="card">
-                                            <div class="card-content quiz"> 
+                                            <div class="card-content"> 
                                                 
                                             </div>
                                         </div>
@@ -104,9 +115,9 @@
                                 </div>
 
                                 <div class="col s6 m6 l6"> 
-                                        <a href="#">
+                                        <a href="#" class="quiz">
                                             <div class="card">
-                                                <div class="card-content quiz"> 
+                                                <div class="card-content "> 
                                                     
                                                 </div>
                                             </div>
@@ -114,9 +125,9 @@
                                     </div>
 
                                     <div class="col s6 m6 l6"> 
-                                            <a href="#">
+                                            <a href="#" class="quiz">
                                                 <div class="card">
-                                                    <div class="card-content quiz"> 
+                                                    <div class="card-content"> 
                                                         
                                                     </div>
                                                 </div>
@@ -124,7 +135,7 @@
                                         </div>
 
                                         <div class="col s6 m6 l6"> 
-                                                <a href="#">
+                                                <a href="#" class="quiz">
                                                     <div class="card">
                                                         <div class="card-content quiz"> 
                                                             
@@ -154,17 +165,19 @@
     let non = document.getElementById('non');
     let yes = 0;
     let no = 0;
-    localStorage.setItem('ouioui', yes);
-    localStorage.setItem('nonnon', no);
+   
     
     demarre();
     
     //localStorage function
    
-
+        const quest = document.querySelector('.quest');
+        quest.classList.remove('hidden');
 
    function demarre() {
-       
+    
+    
+
     fetch('https://opentdb.com/api.php?amount=1')
     .then(reponse => reponse.json())
     .then(reponse => {
@@ -176,6 +189,14 @@
             
         }
         
+        if(!(localStorage.ouioui && localStorage.nonnon)){
+            localStorage.ouioui = 0;
+            localStorage.nonnon = 0
+        } else{
+            oui.textContent = localStorage.ouioui;
+            non.textContent = localStorage.nonnon
+        }
+
         console.log(reponse.results[0].incorrect_answers.length);
        
 
@@ -210,68 +231,51 @@
         }
 
         //ecoute de cliq sur tous les boutons quiz
-// for(k of quiz){
-//     k.addEventListener('click', (e) => {
-//         console.log(e.target.textContent);
-//                 e.stopPropagation();
-
-//                 if(e.target.textContent == reponse.results[0].correct_answer){
-//                         console.log(localStorage)
-//                         yes = parseInt(storeY) + 1;
-//                         oui.textContent = yes;
-//                         // console.log('Yes a atteint ' + yes );
-                        
-//                 } 
-//                 else if(e.target.textContent != reponse.results[0].correct_answer){ 
-//                     console.log(localStorage)
-//                     no = parseInt(storeN)  + 1;
-//                         non.textContent = no;
-//                         // console.log('No a atteint ' + no );
-//                       } 
-
-//                       definir();
-                      
-//     })}
-  
-    quiz.forEach(qcm => qcm.addEventListener('click', e => {
-     e.target.backgroundColor= 'green'; 
-        console.log(e);
-        
+    quiz.forEach(qcm => qcm.addEventListener('click', (e) => {
+     e.stopImmediatePropagation(); 
         if(e.target.textContent == reponse.results[0].correct_answer){
-                        console.log(localStorage)
-                        yes = localStorage.ouioui +  1;
-                           
+                        
+                        localStorage.ouioui++;
+                        
+                        console.log(e.target.textContent);
+                        
+                        console.log(localStorage) 
                         
                         // console.log('Yes a atteint ' + yes );   
                 } 
                 else if(e.target.textContent != reponse.results[0].correct_answer){ 
-                    console.log(localStorage)
-                    no = localStorage.nonnon + 1;
-                   
+                    console.log(e.target.textContent);
+                        localStorage.nonnon++;
+                       
+                        console.log(localStorage)
                         // console.log('No a atteint ' + no );
+                       
                       }
 
                     })
                 )
+                quest.classList.add('hidden')
 //End of forEach
     })  
 
-}    
-
-
-
+}
 
 function reset() {
     localStorage.clear();
-    demarre();
+    localStorage.ouioui = 0;
+    localStorage.nonnon = 0;
     oui.textContent = 0;
     non.textContent = 0;
+    yes = 0; no = 0;
+    window.location.reload()
 }
 function reload() {
-    demarre();
+    window.location.reload()
     oui.textContent = localStorage.ouioui
-    non.textContent = localStorage.nonnon
+    non.textContent = localStorage.nonnon 
+   
    }
+  
 
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
