@@ -10,6 +10,7 @@
     <style>
         html{
             height: 100%;
+            
         }
 
         body{
@@ -17,16 +18,21 @@
             background-size: cover;
             background-repeat: no-repeat;
             height: 100%;
+            letter-spacing: 1px;
+            font-family: 'averta';
+            
         }
 
-        .title{
+        .titre{
             text-align: center;
+            font-family: 'squarial';
+            font-size: 3rem;
         }
         .hidden{
             display: none;
         }
         .quest{
-            text-align: center;
+    
         }
         .contain{
             max-width:95%;
@@ -47,15 +53,14 @@
         height: 7rem;
         border-radius: 8px;
         text-align: center;  
-        vertical-align: baseline;
         text-decoration: none;
         color: black;
+        box-shadow: 0.2rem 0.5rem 0.4rem rgba(0, 0, 0, 0.336);
+        border: solid 1px black;
          }
     .card{
-        border-radius: 8px ;
-        box-shadow: 0 0.5rem 0.2rem rgba(0, 0, 0, 0.062);
-        border: solid 1px black;
-        text-align: center;
+        line-height: normal;
+        vertical-align: middle;
     }
     #oui{
         margin-top: 20px;
@@ -66,7 +71,7 @@
         background: linear-gradient(to right, #ed213a, #93291e);
     }
     #resource{
-        height: 6rem;
+        height: 8rem;
         background: #ffffff;
         padding: 6px;
         border-radius: 8px ;
@@ -81,33 +86,46 @@
     #clear{
         background: linear-gradient(to right, #ec008c, #fc6767);
         }
+        @font-face {
+        font-family: 'averta';
+        src: url('averta.ttf');
+    }
+    @font-face {
+        font-family:'squarial';
+        src: url('squarial.ttf');
+    }
     </style>
 </head>
 <body>
 <div class="row">
     <div class="container">
         <div class="col s12">
-            <p class="title">Quiz App</p>
+            <p class="titre">Quiz App</p>
         </div>
+        <div class="row">
             <div class="col s3 l3 push-s9 push-l9 right-align">
                 <button class="btn" id="oui">0</button>
                 <button class="btn" id="non">0</button>
             </div>
-           
-            <div class="col s12">
-                <p id="resource"></p>
+        </div>
+            
+           <div class="row ">
+               <div class="col s6 center push-s3">
+                <img src="spin.svg" class="quest hidden center" alt="" srcset="">
             </div>
+           </div>
+        
+            
 
-            <div class="col s12 ">
-                <img src="spin.svg" class="quest hidden" alt="" srcset="">
-            </div>
-
-            <div class="row">
+            <div class="row hum">
                 <div class="container container container">
+                         <div class="col s12">
+                            <p id="resource"></p>
+                         </div>
                         <div class="col s6 m6 l6"> 
                                     <a href="#" class="quiz">
-                                        <div class="card">
-                                            <div class="card-content"> 
+                                        <div class="card ">
+                                            <div class="card-content "> 
                                                 
                                             </div>
                                         </div>
@@ -136,8 +154,8 @@
 
                                         <div class="col s6 m6 l6"> 
                                                 <a href="#" class="quiz">
-                                                    <div class="card">
-                                                        <div class="card-content quiz"> 
+                                                    <div class="card" >
+                                                        <div class="card-content"> 
                                                             
                                                         </div>
                                                     </div>
@@ -163,6 +181,7 @@
     let verifi = document.getElementById('verifi');
     let oui = document.getElementById('oui');
     let non = document.getElementById('non');
+    let hum = document.querySelector('.hum')
     let yes = 0;
     let no = 0;
    
@@ -173,6 +192,8 @@
    
         const quest = document.querySelector('.quest');
         quest.classList.remove('hidden');
+        hum.classList.add('hidden');
+    
 
    function demarre() {
     
@@ -254,7 +275,10 @@
 
                     })
                 )
-                quest.classList.add('hidden')
+                quest.classList.add('hidden');
+                for(m of quiz){
+            hum.classList.remove('hidden');
+        }
 //End of forEach
     })  
 
