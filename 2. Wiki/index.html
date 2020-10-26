@@ -11,9 +11,20 @@
     <title>Wiki</title> 
 
     <style>
+         html{
+            
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 100%;
+        }
+        body{
+            background: url(squa.svg);
+            height: 100%;
+        }
 img{
     width: 20%;
-text-align: center;    
+text-align: center;  
+margin: 20px;  
 }
 
         .input-field{
@@ -54,22 +65,27 @@ text-align: center;
 <body>
    
         <div class="row">
-             <img src="wikip.png" alt="" srcset="" class="center-align">
+            <div class="container">
+                <div class="cols12 l12 center-align">
+                  <img src="wikip.png" alt="" srcset="" class="center-align">
+                </div>
             
-                    <form class="col s12 center-align" id="SearchForm">
-                        <div class="input-field">
-                          <i class="material-icons prefix">search</i>
-                          <input type="search" id="mots" class="validate" placeholder="Rechercher ici...">
-                        </div>
-                    </form>
+                <div class="col s12 m8 l8 push-m2 push-l2">
+                        <form class="" id="SearchForm">
+                                <div class="input-field">
+                                  <i class="material-icons prefix">search</i>
+                                  <input type="search" id="mots" class="validate" placeholder="Rechercher ici...">
+                                </div>
+                            </form>
+                    </div>
             </div>
-
-    
 
         <div id="result">            
             
         </div>
 
+    </div>
+             
     <script type="text/javascript">
     //Selecteurs
         let searchForm = document.getElementById('SearchForm');
@@ -101,7 +117,7 @@ text-align: center;
                     let div = document.createElement('div');
                     result.appendChild(div);
 
-                     div.innerHTML = `  <div class="element card white shafe">
+                     div.innerHTML = `  <div class="element card  shafe">
                                         <div class="title">${element.title}</div>
                                         <div class="snippet">${element.snippet}</div>
                                         <a href="https://fr.wikipedia.org/?curid=${element.pageid}">Read more</a>

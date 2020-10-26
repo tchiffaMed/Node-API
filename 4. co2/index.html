@@ -2,46 +2,86 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700&family=Montserrat:wght@300&display=swap" rel="stylesheet">    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <title>CO2</title>
     
 </head>
 <body>
-  <div id="nav">
-      <h2>CO<sub>2</sub> Dashboard</h2>
+
+    <div id="nav">
+    <div class="row">
+        <div class="col s12 l12">
+      <h1>CO<sub>2</sub> Dashboard</h1>
       <p>
           Explore CO<sub>2</sub> emissions by year.
-          Current year: <span id="year-val"></span>
-          <input  type="range" id="year" step="1">
+        <div class="row container">
+                <div class="col s">
+                    </div>
+            <div class="col s4">
+               <p>Current year: <span id="year-val"></span></p> 
+            </div>
+            <div class="col s4">
+                    <form action="#">
+                            <p class="range-field">
+                                <input  type="range" id="year" step="1">
+                            </p>
+                     </form>
+            </div>
+        </div>
       </p>
       <p>
-          Choose between total emissions or emissions per capita.
-          <input type="radio" name="data-type" value="emissions" checked>
-          <label for="">Emissions</label>
-          <input type="radio" name="data-type" value="emissionsPerCapita">
-          <label for="">Emissions Per Capita</label>
         
-      </p>
-      <p>Click on a country to see its trends by year.</p>
-  </div>
-  <section class="container">
-      <div class="chart-container">
-          <svg
-              version="1.1"
-              baseProfile="full"
-              xmlns="http://www.w3.org/2000/svg"
-              id="map">
-            </svg>
+
+          <div class="row">
+              <div class="col s6">
+                    <p>Choose between total emissions or emissions per capita.</p>
+              </div>
+              <div class="col s3"> 
+                  <label>
+                    <input type="radio" name="data-type" value="emissions" checked>
+                    <span for="" class="white-text">Emissions</span>
+                  </label>
+            </div>
+              <div class="col s3 white-text">
+                    <label>
+                            <input type="radio" name="data-type" value="emissionsPerCapita">
+                            <span for="" class="white-text">Emissions Per Capita</span>
+                      </label>
+              </div>
+            </div>
+            <div class="col s12 l12 center-align">
+                <div class="indig ">
+                <p >Click on a country to see its trends by year.</p>
+            </div>
+            </div>
+            
+            </div>
         </div>
-        <div class="chart-container right">
+    </div>
+  
+    <div class="row text-center" style="width: 98%; margin-top: 30px;">
+            <div class="col s12 l6">
+        <div class="chart-container ">
+                <svg
+                    version="1.1"
+                    baseProfile="full"
+                    xmlns="http://www.w3.org/2000/svg"
+                    id="map">
+                    </svg>
+                </div>
+            </div>
+            <div class="col  s12 l6">
+                <div class="chart-container right">
             <svg
             version="1.1" 
             baseProfile="full" 
             xmlns="http://www.w3.org/2000/svg"
             id="pie">
         </svg>
+        <br>
         <svg 
             version="1.1" 
             baseProfile="full" 
@@ -49,13 +89,20 @@
             id="bar">
         </svg>
       </div>
+    </div>
+    </div>
+  <section class="container a">
+      
+        
   </section>
   <div class="tooltip"></div>
   <script src="https://d3js.org/d3.v4.js"></script>
   <script src="https://unpkg.com/topojson@3"></script>
-  <script src="pie.js"></script>
-  <script src="bar.js"></script>
-  <script src="map.js"></script>
-  <script src="app.js"></script>
+  <script src="camembert.js"></script>
+  <script src="histogramme.js"></script>
+  <script src="carte.js"></script>
+  <script src="application.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
 </body>
 </html>

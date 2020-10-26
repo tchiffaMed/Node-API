@@ -1,4 +1,4 @@
-import { exportDefaultDeclaration } from "@babel/types";
+
 
 function createBar(width, height) {
     var bar = d3.select("#bar")
@@ -111,11 +111,6 @@ var barTitle = country ?
 
 
 
-
-
-
-
-}
 
 
 
