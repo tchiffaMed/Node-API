@@ -21,9 +21,7 @@ body{
 .hidden{
     display: none;
 }
-.quest{
 
-}
 .contain{
     max-width:95%;
     margin: 0px auto;
@@ -47,7 +45,7 @@ text-decoration: none;
 color: black;
 box-shadow: 0.2rem 0.5rem 0.4rem rgba(0, 0, 0, 0.336);
 border: solid 1px black;
-padding-top: 15%;
+padding-top: 12%;
 margin: 0.5rem;
  }
 .card{
@@ -72,13 +70,14 @@ background: linear-gradient(to right, #ed213a, #93291e);
 #resource{
 height: 8rem;
 background: #ffffff;
-padding: 6px;
+
 border-radius: 8px ;
 border-top:solid 5px #031100ce;
 border-bottom:solid 5px #051f00ce;
 text-align: center;
 vertical-align: middle;
 margin: 40px;
+padding-top: 2%;
 }
 #verifi {
 background: linear-gradient(to right, #000000, #0f9b0f);
