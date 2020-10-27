@@ -9,9 +9,14 @@
  //l'écouteur
  SearchForm.addEventListener('submit',search);
  
+ const quest = document.querySelector('.quest');
+ 
+
+
  //fonction de recuperation des resultats
  function  search(event) {
- event.preventDefault();
+     quest.classList.remove('hidden');   
+     event.preventDefault();
      result.innerHTML = "";
      word = mots.value.trim();
      console.log(word);
@@ -35,6 +40,8 @@
                                  </div>`
          });
          mots.value = "";
+         quest.classList.add('hidden');
      })
+     
+   
  }
- console.log(mots.value);

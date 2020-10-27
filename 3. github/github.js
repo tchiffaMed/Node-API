@@ -2,12 +2,12 @@
     let searchInput = document.getElementById('searchInput');
     let image = document.getElementById('image');
     let duk = document.querySelector('.duk');
-    
+    const quest = document.querySelector('.quest');
     
         searchForm.addEventListener('submit', gitSearch);
 
         async function gitSearch(event) {
-
+            quest.classList.remove('hidden'); 
             event.preventDefault();
             user = searchInput.value;
 
@@ -69,7 +69,6 @@
 
                     for (let i = 0; i < response.data.length; i++){
                     div.children[0].firstElementChild.lastElementChild.lastElementChild.insertAdjacentHTML('beforeend', `${response.data[i].name} </br>`) 
-
-                 
                 }
+                quest.classList.add('hidden'); 
             }

@@ -4,6 +4,7 @@ let resource = document.getElementById('resource');
     let oui = document.getElementById('oui');
     let non = document.getElementById('non');
     let hum = document.querySelector('.hum')
+    let category = document.getElementById('category')
     let yes = 0;
     let no = 0;
    
@@ -18,9 +19,6 @@ let resource = document.getElementById('resource');
     
 
    function demarre() {
-    
-    
-
     fetch('https://opentdb.com/api.php?amount=1')
     .then(reponse => reponse.json())
     .then(reponse => {
@@ -29,7 +27,6 @@ let resource = document.getElementById('resource');
             quiz[i].textContent='';
             quiz[i].style.backgroundColor = 'white';
             quiz[i].style.display = 'block'
-            
         }
         
         if(!(localStorage.ouioui && localStorage.nonnon)){
@@ -39,13 +36,13 @@ let resource = document.getElementById('resource');
             oui.textContent = localStorage.ouioui;
             non.textContent = localStorage.nonnon
         }
-
+        console.log(reponse.results[0].category);
+        console.log(reponse.results[0].difficulty);
         console.log(reponse.results[0].incorrect_answers.length);
        
-
-
         //affiche la question
         resource.textContent = reponse.results[0].question;
+        category.textContent = reponse.results[0].category;
         //affiche le nombrre de case 4 ou 2
         n = reponse.results[0].incorrect_answers.length === 3 ? 4 : 2;
         

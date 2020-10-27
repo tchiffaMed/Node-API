@@ -4,8 +4,8 @@ html{
     font-family: 'averta'
     
 }
-.card-image{
-    
+.hidden{
+    display: none;
 }
 h4{
     text-align: center;
