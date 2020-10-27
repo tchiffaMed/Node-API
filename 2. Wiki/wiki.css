@@ -1,0 +1,49 @@
+html{
+            
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+}
+body{
+    background: url(squa.svg);
+    height: 100%;
+}
+img{
+width: 20%;
+text-align: center;  
+margin: 20px;  
+}
+
+.input-field{
+    height: 40px;
+    margin: 10px auto;
+    padding-left: 20px;
+    font-size: larger;
+}
+.element{
+    border: rgb(255, 255, 255) solid 1px;
+    border-radius: 2px;
+    width: 50%;
+    height: 50%;
+    margin: 1% auto;
+    background: white;
+    padding: 8px;
+
+}
+.snippet{
+    overflow: hidden;
+    text-overflow: clip;
+    word-break: break-all;
+}
+.title{
+    color: blue;
+    font-weight: bold;
+}
+#result{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows:auto;
+    background: #fdfdff;
+    width: 80%;
+    margin: 5% auto;
+}

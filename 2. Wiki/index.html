@@ -8,58 +8,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@200&family=IBM+Plex+Sans:wght@200&display=swap" rel="stylesheet">    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="wiki.css">
     <title>Wiki</title> 
 
     <style>
-         html{
-            
-            background-repeat: no-repeat;
-            background-size: cover;
-            height: 100%;
-        }
-        body{
-            background: url(squa.svg);
-            height: 100%;
-        }
-img{
-    width: 20%;
-text-align: center;  
-margin: 20px;  
-}
-
-        .input-field{
-            height: 40px;
-            margin: 10px auto;
-            padding-left: 20px;
-            font-size: larger;
-        }
-        .element{
-            border: rgb(255, 255, 255) solid 1px;
-            border-radius: 2px;
-            width: 50%;
-            height: 50%;
-            margin: 1% auto;
-            background: white;
-            padding: 8px;
-
-        }
-        .snippet{
-            overflow: hidden;
-            text-overflow: clip;
-            word-break: break-all;
-        }
-        .title{
-            color: blue;
-            font-weight: bold;
-        }
-        #result{
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows:auto;
-            background: #fdfdff;
-            width: 80%;
-            margin: 5% auto;
-        }
+      
     </style>
 </head>
 <body>
@@ -85,49 +38,7 @@ margin: 20px;
         </div>
 
     </div>
-             
-    <script type="text/javascript">
-    //Selecteurs
-        let searchForm = document.getElementById('SearchForm');
-        let mots = document.getElementById('mots');
-        let result = document.getElementById('result');
-        let title = document.querySelector('.title');
-        let snippet = document.querySelector('.snippet');
-        let read = document.querySelector('.read');
-
-        //l'écouteur
-        SearchForm.addEventListener('submit',search);
-        
-        //fonction de recuperation des resultats
-        function  search(event) {
-        event.preventDefault();
-            result.innerHTML = "";
-            word = mots.value.trim();
-            console.log(word);
-            const url = `https://fr.wikipedia.org/w/api.php?action=query&list=search&prop=info&inprop=url&utf8=&format=json&origin=*&srlimit=10&srsearch=${mots.value}`;
-            fetch(url)
-            .then(res => res.json())
-            .then(res => {
-
-                res.query.search.forEach(element => {
-                    console.log(element);  
-                });
-
-                res.query.search.forEach(element => {
-                    let div = document.createElement('div');
-                    result.appendChild(div);
-
-                     div.innerHTML = `  <div class="element card  shafe">
-                                        <div class="title">${element.title}</div>
-                                        <div class="snippet">${element.snippet}</div>
-                                        <a href="https://fr.wikipedia.org/?curid=${element.pageid}">Read more</a>
-                                        </div>`
-                });
-                mots.value = "";
-            })
-        }
-        console.log(mots.value);
-        
-    </script>
+  
+    <script src="wiki.js"></script>
 </body>
 </html>

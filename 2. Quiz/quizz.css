@@ -1,0 +1,86 @@
+html{
+    height: 100%;
+    
+}
+
+body{
+    background-image: url(sutr.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    letter-spacing: 1px;
+    font-family: 'averta';
+    
+}
+
+.titre{
+    text-align: center;
+    font-family: 'squarial';
+    font-size: 3rem;
+}
+.hidden{
+    display: none;
+}
+.quest{
+
+}
+.contain{
+    max-width:95%;
+    margin: 0px auto;
+}
+/* #resource{
+width: 95%;
+text-align: center;    }
+.quizplace{
+display: grid;
+grid-template-columns: 1Fr 1fr;
+grid-template-rows: 1Fr 1fr;
+row-gap: 8px;
+column-gap: 8px;
+justify-items: center;
+}*/
+.quiz{
+height: 7rem;
+border-radius: 8px;
+text-align: center;  
+text-decoration: none;
+color: black;
+box-shadow: 0.2rem 0.5rem 0.4rem rgba(0, 0, 0, 0.336);
+border: solid 1px black;
+ }
+.card{
+line-height: normal;
+vertical-align: middle;
+}
+#oui{
+margin-top: 20px;
+background: linear-gradient(to right, #11998e, #38ef7d);
+}
+#non{
+margin-top: 20px;
+background: linear-gradient(to right, #ed213a, #93291e);
+}
+#resource{
+height: 8rem;
+background: #ffffff;
+padding: 6px;
+border-radius: 8px ;
+border-top:solid 5px #031100ce;
+border-bottom:solid 5px #051f00ce;
+text-align: center;
+margin: 40px;
+}
+#verifi {
+background: linear-gradient(to right, #000000, #0f9b0f);
+}
+#clear{
+background: linear-gradient(to right, #ec008c, #fc6767);
+}
+@font-face {
+font-family: 'averta';
+src: url('averta.ttf');
+}
+@font-face {
+font-family:'squarial';
+src: url('squarial.ttf');
+}

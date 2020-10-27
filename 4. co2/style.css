@@ -95,10 +95,3 @@
 }
 
 
-
-      input[type=range] + .thumb {
-        background-color: #dedede;
-      }
-      #year {
-        color: red;
-      }

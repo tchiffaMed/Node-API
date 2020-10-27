@@ -6,48 +6,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="joke.css">
     <title>Chucknorris</title>
-
-    <style>
-        html{
-            background: url(abs.svg);
-            background-repeat: no-repeat;
-            background-size: cover;
-            height: 100%;
-        }
-        body{
-            height: 100%;
-        }
-    button, #icon{
-        display: block;
-        margin: 10px auto;
-    }
-#joke{
-    font-family: 'Exo 2', sans-serif;
-    font-size: 4em;
-}
-    #icon img{
-        display: flex;
-        margin: auto;
-        justify-content: center;
-        width: 70px;
-    }
-
-    #newjoke{
-    padding: 0.75rem;
-    border-radius: 8px;
-    border-left:solid 8px #00726c;
-    font-size: 1.4rem;
-    margin: 100px auto;
-    max-width: fit-content;
-    overflow-wrap: break-word;
-    background: #f7f7f71a;
-    box-shadow:  20px 20px 60px  #fdf0e813, 
-                -20px -20px 60px #fffbf818;
-
-    font-family: 'Exo 2', sans-serif;
-}
-    </style>
 </head>
 <body>
     <div class="row">
@@ -63,33 +23,7 @@
     </div>
  
     
-
-
-
-    <script>
-    let joke = document.getElementById('joke');
-    let icon = document.getElementById('icon');
-
-
-    blague ();
-    function blague (){
-
-    fetch('https://api.chucknorris.io/jokes/random')
-
-    .then(res => res.json())
-
-    .then(res => {
-        console.log(res);
-        
-                    console.log(JSON.stringify(res.icon_url));
-                console.log(JSON.stringify(res.value));       
-            icon.innerHTML= `<img src="${res.icon_url}">`;
-        newjoke.textContent = JSON.stringify(res.value);
-        })
-
-    .catch(error => console.log("error"))
-    }
-    </script>
+    <script src="joke.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 </html>
